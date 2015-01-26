@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: transform .5s;
+}
+.small-input {
+  font-size: 1.1em;
+  border: none;
+  padding: .2em;
+  margin: .1em;
+  cursor: pointer;
+  color: #128;
+  outline: 0;
+}
+toolbar-anchor {
+  position: relative;
+  display: block;
+}
+inner-toolbar {
+  background: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 10px #888;
+  margin: 0 0 1em 0;
+  padding: 0.5em;
+  border: 1px solid #888;
+  border-radius: 4px;
+  opacity: 0.4;
+  transition: all 0.3s;
+  z-index: 999;
+}
+inner-toolbar:hover {
+  opacity: 1;
+  box-shadow: 0 0 15px #128;
+}

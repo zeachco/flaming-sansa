@@ -4,12 +4,14 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/cms.css">
+  <link rel="stylesheet" type="text/css" href="css/drag.css">
   <script src="bower_components/angularjs/angular.min.js"></script>
   <script>
   angular.module('twitter-demo', []);
   </script>
   <script src="js/cmsController.js"></script>
-  <script src="js/twitterDirective.js"></script>
+  <script src="js/tweetsPanel.js"></script>
 </head>
 
 <body style="font-family:Arial, Helvetica, sans-serif;margin:0px auto;max-width:980px;line-height:1.2em;">
@@ -27,13 +29,17 @@
 
     <p>Use the <a href="https://dev.twitter.com/docs/api/1.1" target="_blank">Twitter API</a> to fill the following areas on the page:</p>
 
-    <div>
-      <label>Limit tweets to<input class="max-number" type="number" ng-model="maxTweets"/></label>
-    </div>
+    <toolbar-anchor>
+      <inner-toolbar>
+        <label>Limit tweets to<input class="small-input" style="width: 2.5em;" type="number" ng-model="options.maxTweets"/></label>
+        <div ng-repeat="user in panels" >
 
-    <tweets from="AppDirect" max="{{maxTweets}}">Loading the 30 most recent tweets from @AppDirect...</tweets>
-    <tweets from="laughingsquid" max="{{maxTweets}}">Loading the 30 most recent tweets from @laughingsquid...</tweets>
-    <tweets from="techcrunch" max="{{maxTweets}}">Loading the 30 most recent tweets from @techcrunch...</tweets>
+        </div>
+        from {{dragFrom}} to {{dragTo}}
+      </inner-toolbar>
+    </toolbar-anchor>
+
+    <tweets-panel ng-repeat="panel in getPanels()" draggable="true" from="{{panel.user}}" max="{{options.maxTweets}}" position="{{$index}}">Loading the {{options.maxTweets}} most recent tweets from @{{panel.user}}...</tweets-panel>
 
     <div style="clear:both;"></div>
     <p>(Check out the <a href="https://dev.twitter.com/docs/api/1/get/statuses/user_timeline" target="_blank">User Timeline</a> API)</p>
