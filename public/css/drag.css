@@ -1,10 +1,20 @@
-
 [draggable] {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
   /* Required to make elements draggable in old WebKit */
+
   -khtml-user-drag: element;
   -webkit-user-drag: element;
+  cursor: pointer;
+}
+[draggable].moving {
+  opacity: 0.5;
+  border: 1px dashed #000;
+  cursor: move;
+}
+[draggable].prospect {
+  opacity: 0.9;
+  border: 1px dashed #008;
 }

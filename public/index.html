@@ -6,13 +6,9 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/cms.css">
   <link rel="stylesheet" type="text/css" href="css/drag.css">
-  <script src="bower_components/underscore/underscore-min.js"></script>
-  <script src="bower_components/backbone/backbone.js"></script>
-  <script>
-  angular.module('twitter-demo', []);
-  </script>
-  <script src="js/cmsController.js"></script>
-  <script src="js/tweetsPanel.js"></script>
+  <script src="js/CMS.js"></script>
+  <script src="js/TwitterPanel.js"></script>
+  <script src="js/app.js"></script>
 </head>
 
 <body style="font-family:Arial, Helvetica, sans-serif;margin:0px auto;max-width:980px;line-height:1.2em;">
@@ -24,19 +20,23 @@
     <p>We are looking for code quality, knowledge of cross-browser compatibility, quick load times, and innovation/thoughtfulness.</p>
 
   </header>
-
   <section>
     <h2>Part I: get it.</h2>
 
     <p>Use the <a href="https://dev.twitter.com/docs/api/1.1" target="_blank">Twitter API</a> to fill the following areas on the page:</p>
 
+    <div id="twitterPanels">
+
+    </div>
     <toolbar-anchor>
       <inner-toolbar>
-        <label>Limit tweets to<input class="small-input" style="width: 2.5em;" type="number" ng-model="options.maxTweets"/></label>
-        <div ng-repeat="user in panels" >
+        <label>Limit tweets to
+          <input class="small-input" style="width: 2.5em;" type="number" value="30"/>
+        </label>
+        <div ng-repeat="user in panels">
 
         </div>
-        from {{dragFrom}} to {{dragTo}}
+        Drag panels to organize
       </inner-toolbar>
     </toolbar-anchor>
 

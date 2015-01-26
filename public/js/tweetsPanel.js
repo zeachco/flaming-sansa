@@ -66,7 +66,9 @@
       restrict: "E",
       //replace: true,
       //transclude: true,
-      scope: {},
+      scope: {
+        
+      },
       //template: "<span><a href='#' ng-click='sort()' ng-transclude></a></span>",
       link: tweetLink
     };

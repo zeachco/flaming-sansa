@@ -14,7 +14,7 @@ tweets-panel {
   text-align: center;
   font-weight: bold;
   margin: 0 10px;
-  transition: margin .5s;
+  transition: all .5s;
 }
 @media (max-width: 1020px) {
   tweets-panel {
