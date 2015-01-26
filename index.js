@@ -3,6 +3,10 @@ var Twitter = require('twitter');
 var url = require("url");
 var app = express();
 
+var config = {
+  server_port : 3000
+};
+
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
@@ -20,14 +24,6 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
   }
 });
 
-var config = {
-  server_port : 3000,
-  oauth_access_token : 'token-here',
-  oauth_access_token_secret : 'token-here',
-  consumer_key : 'token-here',
-  consumer_secret : 'token-here',
-  base_url : 'https://api.twitter.com/1.1/'
-};
 
 app.get('/proxy/*', function(req, res) {
   var uri = url.parse(req.url);

@@ -9,12 +9,20 @@ body.cms-active {
   transform: translate(0, 0);
   transform: translate(-280px, 0);*/
 }
+.max-number {
+  width: 3em;
+  font-size: 1.1em;
+  border: none;
+  padding: .4em;
+  cursor: pointer;
+  color: #128;
+}
 body.cms-active #cms-toogle {
   border-color: #080;
   background: #0a0;
   color: #fff;
 }
-.twitter-box {
+tweets {
   float: left;
   display: inline;
   width: 260px;
@@ -27,7 +35,7 @@ body.cms-active #cms-toogle {
   transition: margin .5s;
 }
 @media (max-width: 1020px) {
-  .twitter-box {
+  tweets {
     display: block;
     float: none;
     width: auto;

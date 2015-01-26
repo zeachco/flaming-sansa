@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:ng="http://angularjs.org" ng-app="twitter-demo" ng-controller="cmsController">
 <title>Using the Twitter API to make an @AppDirect page</title>
 
 <head>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="bower_components/angularjs/angular.min.js"></script>
+  <script>
+  angular.module('twitter-demo', []);
+  </script>
+  <script src="js/cmsController.js"></script>
+  <script src="js/twitterDirective.js"></script>
 </head>
 
 <body style="font-family:Arial, Helvetica, sans-serif;margin:0px auto;max-width:980px;line-height:1.2em;">
@@ -22,15 +27,14 @@
 
     <p>Use the <a href="https://dev.twitter.com/docs/api/1.1" target="_blank">Twitter API</a> to fill the following areas on the page:</p>
 
-    <div id="tweets-appdirect" class="twitter-box">
-      <p>The 30 most recent tweets from @AppDirect</p>
+    <div>
+      <label>Limit tweets to<input class="max-number" type="number" ng-model="maxTweets"/></label>
     </div>
-    <div id="tweets-laughingsquid" class="twitter-box">
-      <p>The 30 most recent tweets from @laughingsquid.</p>
-    </div>
-    <div id="tweets-techcrunch" class="twitter-box">
-      <p>The 30 most recent tweets from @techcrunch.</p>
-    </div>
+
+    <tweets from="AppDirect" max="{{maxTweets}}">Loading the 30 most recent tweets from @AppDirect...</tweets>
+    <tweets from="laughingsquid" max="{{maxTweets}}">Loading the 30 most recent tweets from @laughingsquid...</tweets>
+    <tweets from="techcrunch" max="{{maxTweets}}">Loading the 30 most recent tweets from @techcrunch...</tweets>
+
     <div style="clear:both;"></div>
     <p>(Check out the <a href="https://dev.twitter.com/docs/api/1/get/statuses/user_timeline" target="_blank">User Timeline</a> API)</p>
 
