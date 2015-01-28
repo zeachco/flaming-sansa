@@ -2,7 +2,23 @@ body {
   margin: 0;
   padding-left: 20px;
   padding-right: 20px;
-  transition: transform .5s;
+  transition: padding .5s;
+}
+body.cms-active {
+  padding-top: 8em;
+}
+.btn {
+  background: #ddd;
+  box-shadow: 0 0 10px #888;
+  margin: 0 0 1em 0;
+  padding: 0.5em;
+  border: 1px solid #888;
+  border-radius: 4px;
+  opacity: 0.8;
+  outline: none;
+}
+.btn:hover {
+  opacity: 1;
 }
 .small-input {
   font-size: 1.1em;
@@ -16,39 +32,58 @@ body {
 body cms-toolbar {
   background: #fff;
   box-shadow: 0 0 10px #888;
-  margin: 0 0 1em -1000px;
+  margin: 0 0 1em -100%;
   padding: 0.5em;
   border: 1px solid #888;
   border-radius: 4px;
   opacity: 0.4;
   transition: all 0.4s;
-  z-index: 999;
+  z-index: 900;
   position: absolute;
 }
 body.cms-active cms-toolbar {
   margin-left: 0;
-  opacity:1 ;
-  /*position: initial;*/
+  opacity: 1;
 }
-
-body #cmsToggler{
-  background: #ddd;
-  box-shadow: 0 0 10px #888;
-  position:fixed;
-  top:.5em;
-  right:.5em;
-  margin: 0 0 1em 0;
-  padding: 0.5em;
-  border: 1px solid #888;
-  border-radius: 4px;
-  opacity: 0.6;
+body #cmsToggler {
+  /*position: fixed;
+  top: .5em;
+  right: .5em;
+  z-index: 999;*/
 }
-
-body #cmsToggler:hover{
-  opacity:1;
+body #cmsToggler:hover {
+  opacity: 1;
 }
-
-body.cms-active #cmsToggler{
+body.cms-active #cmsToggler {
   background: #080;
-  color:#fff;
+  color: #fff;
+}
+.cms-header-below {
+  position: absolute;
+  bottom: -11em;
+  right: 0;
+}
+.cms-header-anchor {
+  position: relative;
+}
+
+body cms-header {
+  z-index: 901;
+  height: 7em;
+  border-radius: 0;
+  background: #ddd;
+  border: none;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 0 1em 0;
+  margin-top: -8em;
+  transition: margin .5s;
+}
+body.cms-active cms-header {
+  margin-top: 0;
+}
+.cms-header-body{
+  padding: 0.5em;
 }

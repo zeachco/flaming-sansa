@@ -3,7 +3,7 @@
 
   function tweetsPanel() {
 
-    return function tweetLink(scope, element, attr) {
+    function tweetLink(scope, element, attr) {
 
       element.bind('dragstart', function(e) {
         scope.$emit('dragFrom', attr.position);
@@ -24,8 +24,16 @@
         scope.$apply('reorder()');
       });
 
+    }
+
+
+    return {
+      template: "<h3>@{{user}}</h3>Loading {{cms.maxTweets}} tweets...<br><small>{{cms.timeFrom}} ~ {{cms.timeTo}}</small>",
+      link: tweetLink
     };
+
   }
+
 
   angular.module('twitter-demo').directive('tweetsPanel', [tweetsPanel]);
 

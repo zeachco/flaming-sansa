@@ -1,5 +1,3 @@
-
-
 (function() {
   'use strict';
 
@@ -8,18 +6,48 @@
     var maxTweets_min = 0;
     var maxTweets_max = 300;
 
-    $scope.editMode = false;
+    $scope.editMode = true;
 
     $scope.cms = {
       panels: ['AppDirect', 'laughingsquid', 'techcrunch'],
-      maxTweets: 30
+      maxTweets: 30,
+      timeFrom: '00:00',
+      timeTo: '23:59',
+      style: {
+        bgColor: '#def'
+      }
+    };
+
+    $scope.getBodyStyle = function(){
+
     };
 
     $scope.cmsToggle = function() {
       $scope.editMode = !$scope.editMode;
-      if(!$scope.editMode){
+      if (!$scope.editMode) {
         $scope.saveChanges();
       }
+    };
+
+    $scope.$on('cms.setKey', function(e, attr) {
+      for (var n in attr) {
+        $scope.cms[n] = attr[n];
+      }
+      $scope.$apply();
+    });
+
+
+    $scope.getCmsDate = function(key) {
+      var d = new Date();
+      try {
+        var time = $scope.cms[key].split(':');
+        d.setHours(time[0]);
+        d.setMinutes(time[1]);
+        d.setSeconds(0);
+      } catch (e) {
+        // return now when not formated
+      }
+      return d;
     };
 
     // keep maxTweets value to be a finite number and assure it's withint a range
@@ -48,11 +76,10 @@
     };
 
     $scope.loadStorage = function() {
-      if(localStorage.cms){
+      if (localStorage.cms) {
         $scope.cms = JSON.parse(localStorage.cms);
       }
     };
-
     $scope.loadStorage();
 
     $scope.saveChanges = function() {
