@@ -4,29 +4,36 @@ var url = require("url");
 var app = express();
 
 var config = {
-  server_port : 3000
+  server_port: 3000
 };
 
 app.use(express.static(__dirname + '/public'));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
-var client = new Twitter({
-  consumer_key: '',
-  consumer_secret: '',
-  access_token_key: '',
-  access_token_secret: ''
-});
+var twitterAuth = require('./twitterAuth.json');
+console.log(twitterAuth);
+var client = new Twitter(twitterAuth);
 
-var params = {screen_name: 'nodejs'};
-client.get('statuses/user_timeline', params, function(error, tweets, response){
-  if (!error) {
-    console.log(tweets);
-  }
-});
+var re_twitterUser = /twitter-proxy\/user\/([a-z]+)/;
 
-app.get('/proxy/*', function(req, res) {
+app.get(re_twitterUser, function(req, res) {
   var uri = url.parse(req.url);
-  res.json(uri);
+
+  var user = re_twitterUser.exec(uri.path)[1];
+
+  console.log('fetching tweets for', user);
+
+  client.get('statuses/user_timeline', {
+    screen_name: user
+  }, function(error, tweets, response) {
+    if (!error) {
+      res.json(tweets);
+    } else {
+      console.log(error);
+      res.json(error);
+    }
+  });
+
 });
 
 var server = app.listen(config.server_port, function() {
