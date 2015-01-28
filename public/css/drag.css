@@ -1,21 +1,19 @@
-[draggable] {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  /* Required to make elements draggable in old WebKit */
-
-  -khtml-user-drag: element;
-  -webkit-user-drag: element;
-  cursor: pointer;
-  transition: opacity 0.5s, border 1s;
+body [draggable]{
+  transition: opacity 0.5s, border 1s, transform 300ms;
 }
-[draggable].moving {
-  opacity: 0.5;
-  border: 1px dashed #000;
+
+body.cms-active [draggable] {
+  cursor: pointer;
+  border: 1px dashed #08f;
+}
+body.cms-active [draggable].moving {
+  opacity: 0.3;
+  border: 1px solid #08f;
   cursor: move;
 }
-[draggable].prospect {
-  opacity: 0.9;
-  border: 1px dashed #008;
+body.cms-active [draggable].prospect {
+  opacity: 0.8;
+  border: 1px solid #08f;
+  transform: scale(0.95,0.95);
+  box-shadow: 0 0 20px #08f;
 }

@@ -5,48 +5,58 @@
 
   function cmsController($scope) {
 
-    $scope.options = {
-      twitterUsers: ['AppDirect', 'laughingsquid', 'techcrunch'],
-      maxTweets: 30
-    };
     var maxTweets_min = 0;
     var maxTweets_max = 300;
 
-    $scope.$watch('options.maxTweets', function(newVal, oldVal) {
-      if (isNaN(newVal)) {
-        $scope.options.maxTweets = oldVal;
-      } else {
-        $scope.options.maxTweets = parseInt(Math.min(Math.max(+newVal, maxTweets_min), maxTweets_max));
-      }
-    });
+    $scope.editMode = false;
 
-    $scope.$watch('options.twitterUsers', function(newVal, oldVal) {
-      $scope.panels = $scope.options.twitterUsers.map(function(d, i) {
-        return {
-          user: d,
-          position: i
-        };
-      });
-    });
-
-    $scope.getPanels = function() {
-      return $scope.panels.sort(function(a, b) {
-        return a.position - b.position;
-      });
+    $scope.cms = {
+      panels: ['AppDirect', 'laughingsquid', 'techcrunch'],
+      maxTweets: 30
     };
 
-    $scope.changePanelOrder = function(index, newIndex) {
-      $scope.panels.splice(newIndex, 0, $scope.panels.splice(index, 1)[0]);
+    $scope.cmsToggle = function() {
+      $scope.editMode = !$scope.editMode;
+      if(!$scope.editMode){
+        $scope.saveChanges();
+      }
     };
 
     // keep maxTweets value to be a finite number and assure it's withint a range
+    $scope.$watch('cms.maxTweets', function(newVal, oldVal) {
+      if (isNaN(newVal)) {
+        $scope.cms.maxTweets = oldVal;
+      } else {
+        $scope.cms.maxTweets = parseInt(Math.min(Math.max(+newVal, maxTweets_min), maxTweets_max));
+      }
+    });
 
-    $scope.loadChanges = function() {
+    $scope.$on('dragFrom', function(e, data) {
+      $scope.dragFrom = data;
+      $scope.dragTo = data;
+    });
 
+    $scope.$on('dragTo', function(e, data) {
+      $scope.dragTo = data;
+    });
+
+    $scope.reorder = function() {
+      //console.log('reorder', $scope.dragFrom, $scope.dragTo);
+      if ($scope.dragFrom != $scope.dragTo) {
+        $scope.cms.panels.splice($scope.dragTo, 0, $scope.cms.panels.splice($scope.dragFrom, 1)[0]);
+      }
     };
 
-    $scope.saveChanges = function() {
+    $scope.loadStorage = function() {
+      if(localStorage.cms){
+        $scope.cms = JSON.parse(localStorage.cms);
+      }
+    };
 
+    $scope.loadStorage();
+
+    $scope.saveChanges = function() {
+      localStorage.cms = JSON.stringify($scope.cms);
     };
 
   }

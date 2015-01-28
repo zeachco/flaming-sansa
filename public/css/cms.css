@@ -13,24 +13,42 @@ body {
   color: #128;
   outline: 0;
 }
-toolbar-anchor {
-  position: relative;
-  display: block;
-}
-inner-toolbar {
+body cms-toolbar {
   background: #fff;
-  position: absolute;
-  left: 0;
-  top: 0;
   box-shadow: 0 0 10px #888;
-  margin: 0 0 1em 0;
+  margin: 0 0 1em -1000px;
   padding: 0.5em;
   border: 1px solid #888;
   border-radius: 4px;
   opacity: 0.4;
+  transition: all 0.4s;
   z-index: 999;
+  position: absolute;
 }
-inner-toolbar:hover {
-  opacity: 1;
-  box-shadow: 0 0 15px #128;
+body.cms-active cms-toolbar {
+  margin-left: 0;
+  opacity:1 ;
+  /*position: initial;*/
+}
+
+body #cmsToggler{
+  background: #ddd;
+  box-shadow: 0 0 10px #888;
+  position:fixed;
+  top:.5em;
+  right:.5em;
+  margin: 0 0 1em 0;
+  padding: 0.5em;
+  border: 1px solid #888;
+  border-radius: 4px;
+  opacity: 0.6;
+}
+
+body #cmsToggler:hover{
+  opacity:1;
+}
+
+body.cms-active #cmsToggler{
+  background: #080;
+  color:#fff;
 }
