@@ -4,15 +4,16 @@ body [draggable]{
 
 body.cms-active [draggable] {
   cursor: pointer;
-  border: 1px dotted #00f;
+  border: 1px dashed #08f;
 }
 body.cms-active [draggable].moving {
-  opacity: 0.1;
-  border: 1px dashed #008;
+  opacity: 0.3;
+  border: 1px solid #08f;
   cursor: move;
 }
 body.cms-active [draggable].prospect {
-  opacity: 0.9;
-  border: 1px dashed #008;
-  transform: scale(0.9,0.9);
+  opacity: 0.8;
+  border: 1px solid #08f;
+  transform: scale(0.95,0.95);
+  box-shadow: 0 0 20px #08f;
 }
