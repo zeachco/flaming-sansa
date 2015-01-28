@@ -1,13 +1,14 @@
 (function() {
   'use strict';
 
-  function cmsController($scope) {
+  function cmsController($scope, TwitterFactory) {
 
     var maxTweets_min = 0;
     var maxTweets_max = 300;
 
     $scope.editMode = false;
     $scope.isDark = false;
+    $scope.tweets = {};
 
     $scope.cms = {
       panels: ['AppDirect', 'laughingsquid', 'techcrunch'],
@@ -96,6 +97,18 @@
       }
     };
 
+    $scope.updateTweets = function() {
+      var i = 0;
+      var panel;
+
+      $scope.cms.panels.forEach(function(user) {
+        TwitterFactory.getUserTweets(d, function(data) {
+          $scope.tweets[user] = data;
+        });
+      });
+
+    };
+
     $scope.saveChanges = function() {
       localStorage.cms = JSON.stringify($scope.cms);
     };
@@ -103,7 +116,7 @@
     $scope.loadStorage = function() {
       if (localStorage.cms) {
         $scope.cms = JSON.parse(localStorage.cms);
-      }else{
+      } else {
         $scope.saveChanges();
       }
     };
@@ -111,6 +124,6 @@
 
   }
 
-  angular.module('twitter-demo').controller('cmsController', ['$scope', cmsController]);
+  angular.module('twitter-demo').controller('cmsController', ['$scope', 'TwitterFactory', cmsController]);
 
 })();

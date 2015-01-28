@@ -24,16 +24,18 @@
         scope.$apply('reorder()');
       });
 
+      scope.$watch('tweets.' + attr.user, function(newVal, oldVal) {
+        console.log('tweets', newVal, oldVal);
+      });
+
     }
 
-
     return {
-      template: "<h3>@{{user}}</h3>Loading {{cms.maxTweets}} tweets...<br><small>{{cms.timeFrom}} ~ {{cms.timeTo}}</small>",
+      template: "<div><h3>@{{user}}</h3>Loading {{cms.maxTweets}} tweets...<br><small>{{cms.timeFrom}} ~ {{cms.timeTo}}</small></div>",
       link: tweetLink
     };
 
   }
-
 
   angular.module('twitter-demo').directive('tweetsPanel', [tweetsPanel]);
 
