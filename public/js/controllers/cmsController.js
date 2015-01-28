@@ -6,7 +6,8 @@
     var maxTweets_min = 0;
     var maxTweets_max = 300;
 
-    $scope.editMode = true;
+    $scope.editMode = false;
+    $scope.isDark = false;
 
     $scope.cms = {
       panels: ['AppDirect', 'laughingsquid', 'techcrunch'],
@@ -18,9 +19,29 @@
       }
     };
 
-    $scope.getBodyStyle = function(){
+    function getLightValue(hex) {
+      hex = String(hex).replace(/[^0-9a-f]/gi, ''); // validate hex string
+      if (hex.length < 6) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+      }
 
-    };
+      // convert to decimal and change luminosity
+      var rgb = "#";
+      var sum = 0;
+      var c;
+      var i;
+      for (i = 0; i < 3; i++) {
+        sum += parseInt(hex.substr(i * 2, 2), 16);
+      }
+
+      return sum / (255 * 3);
+    }
+
+    $scope.$watch('cms.style.bgColor', function(newVal, oldVal) {
+      document.body.style.background = newVal;
+      $scope.isDark = getLightValue(newVal) > 0.5;
+      document.body.style.color = $scope.isDark ? '#000' : '#fff';
+    });
 
     $scope.cmsToggle = function() {
       $scope.editMode = !$scope.editMode;

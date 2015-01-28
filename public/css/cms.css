@@ -40,19 +40,11 @@ body cms-toolbar {
   transition: all 0.4s;
   z-index: 900;
   position: absolute;
+  color: #000;
 }
 body.cms-active cms-toolbar {
   margin-left: 0;
-  opacity: 1;
-}
-body #cmsToggler {
-  /*position: fixed;
-  top: .5em;
-  right: .5em;
-  z-index: 999;*/
-}
-body #cmsToggler:hover {
-  opacity: 1;
+  opacity: 0.95;
 }
 body.cms-active #cmsToggler {
   background: #080;
@@ -60,16 +52,15 @@ body.cms-active #cmsToggler {
 }
 .cms-header-below {
   position: absolute;
-  bottom: -11em;
-  right: 0;
+  bottom: -8em;
+  right: .5em;
 }
 .cms-header-anchor {
   position: relative;
 }
-
 body cms-header {
   z-index: 901;
-  height: 7em;
+  height: 4em;
   border-radius: 0;
   background: #ddd;
   border: none;
@@ -78,12 +69,17 @@ body cms-header {
   top: 0;
   left: 0;
   padding: 0 0 1em 0;
-  margin-top: -8em;
+  margin-top: -5em;
+  color: #000;
+  opacity: 0.7;
   transition: margin .5s;
+}
+body cms-header:hover {
+  opacity: 0.95;
 }
 body.cms-active cms-header {
   margin-top: 0;
 }
-.cms-header-body{
+.cms-header-body {
   padding: 0.5em;
 }

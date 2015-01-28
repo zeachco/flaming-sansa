@@ -1,0 +1,11 @@
+body {
+  transition: color 300ms, background 300ms;
+}
+
+body a {
+  transition: color 300ms, background 300ms;
+  color: #abf;
+}
+body.dark a {
+  color: #128;
+}

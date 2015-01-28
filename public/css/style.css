@@ -9,6 +9,7 @@ tweets-panel {
   display: inline;
   width: 260px;
   background: #f4f4f4;
+  color: #000;
   border: 1px solid #ddd;
   padding: 220px 20px;
   text-align: center;
@@ -23,4 +24,12 @@ tweets-panel {
     width: auto;
     margin-bottom: 10px;
   }
+}
+
+body a {
+  text-decoration: none;
+}
+
+body a:hover {
+  text-decoration: underline;
 }
