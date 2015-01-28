@@ -8,6 +8,7 @@
   -khtml-user-drag: element;
   -webkit-user-drag: element;
   cursor: pointer;
+  transition: opacity 0.5s, border 1s;
 }
 [draggable].moving {
   opacity: 0.5;

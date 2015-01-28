@@ -40,8 +40,6 @@
       </inner-toolbar>
     </toolbar-anchor>
 
-    <tweets-panel ng-repeat="panel in getPanels()" draggable="true" from="{{panel.user}}" max="{{options.maxTweets}}" position="{{$index}}">Loading the {{options.maxTweets}} most recent tweets from @{{panel.user}}...</tweets-panel>
-
     <div style="clear:both;"></div>
     <p>(Check out the <a href="https://dev.twitter.com/docs/api/1/get/statuses/user_timeline" target="_blank">User Timeline</a> API)</p>
 
