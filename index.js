@@ -24,7 +24,6 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
   }
 });
 
-
 app.get('/proxy/*', function(req, res) {
   var uri = url.parse(req.url);
   res.json(uri);

@@ -96,16 +96,18 @@
       }
     };
 
-    $scope.loadStorage = function() {
-      if (localStorage.cms) {
-        $scope.cms = JSON.parse(localStorage.cms);
-      }
-    };
-    $scope.loadStorage();
-
     $scope.saveChanges = function() {
       localStorage.cms = JSON.stringify($scope.cms);
     };
+
+    $scope.loadStorage = function() {
+      if (localStorage.cms) {
+        $scope.cms = JSON.parse(localStorage.cms);
+      }else{
+        $scope.saveChanges();
+      }
+    };
+    $scope.loadStorage();
 
   }
 
