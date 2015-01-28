@@ -8,13 +8,14 @@
   <link rel="stylesheet" type="text/css" href="css/drag.css">
   <script src="bower_components/angularjs/angular.min.js"></script>
   <script>
-  angular.module('twitter-demo', []);
+    angular.module('twitter-demo', []);
   </script>
   <script src="js/cmsController.js"></script>
   <script src="js/tweetsPanel.js"></script>
 </head>
 
-<body style="font-family:Arial, Helvetica, sans-serif;margin:0px auto;max-width:980px;line-height:1.2em;">
+<body ng-class="editMode ? 'cms-active' : ''" style="font-family:Arial, Helvetica, sans-serif;margin:0px auto;max-width:980px;line-height:1.2em;">
+  <button id="cmsToggler" ng-click="cmsToggle()">{{editMode ? 'Save changes' : 'Edit changes'}}</button>
   <header>
     <h1>A Little Twitter Page</h1>
     <p>We at AppDirect are interested in making a front-end with standards-compliant, asyncronous, api-driven, beautious javascript. Your task is to do just that with <a href="https://dev.twitter.com/docs/api/1.1" target="_blank">Twitter's REST api</a>.</p>
@@ -29,17 +30,13 @@
 
     <p>Use the <a href="https://dev.twitter.com/docs/api/1.1" target="_blank">Twitter API</a> to fill the following areas on the page:</p>
 
-    <toolbar-anchor>
-      <inner-toolbar>
-        <label>Limit tweets to<input class="small-input" style="width: 2.5em;" type="number" ng-model="options.maxTweets"/></label>
-        <div ng-repeat="user in panels" >
+    <cms-toolbar>
+      <label title="for {{cms.panels.join(', ')}}">Limit tweets to
+        <input class="small-input" style="width: 2.5em;" type="number" ng-model="cms.maxTweets" />
+      </label>
+    </cms-toolbar>
 
-        </div>
-        from {{dragFrom}} to {{dragTo}}
-      </inner-toolbar>
-    </toolbar-anchor>
-
-    <tweets-panel ng-repeat="panel in getPanels()" draggable="true" from="{{panel.user}}" max="{{options.maxTweets}}" position="{{$index}}">Loading the {{options.maxTweets}} most recent tweets from @{{panel.user}}...</tweets-panel>
+    <tweets-panel ng-repeat="user in cms.panels" draggable="{{editMode}}" from="{{user}}" max="{{cms.maxTweets}}" position="{{$index}}" onchange="reorder()">Loading the {{cms.maxTweets}} most recent tweets from @{{user}}...</tweets-panel>
 
     <div style="clear:both;"></div>
     <p>(Check out the <a href="https://dev.twitter.com/docs/api/1/get/statuses/user_timeline" target="_blank">User Timeline</a> API)</p>
