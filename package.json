@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/zeachco/flaming-sansa",
   "dependencies": {
+    "body-parser": "^1.10.2",
     "express": "^4.11.1",
     "twitter": "^1.2.1"
   }

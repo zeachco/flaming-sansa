@@ -15,6 +15,11 @@ tweets-panel {
   margin: 0 10px;
   transition: all .5s;
 }
+tweets-panel scroll-view {
+  max-height: 500px;
+  display:block;
+  overflow-y: auto;
+}
 @media (max-width: 1020px) {
   tweets-panel {
     display: block;
@@ -23,11 +28,9 @@ tweets-panel {
     margin-bottom: 10px;
   }
 }
-
 body a {
   text-decoration: none;
 }
-
 body a:hover {
   text-decoration: underline;
 }

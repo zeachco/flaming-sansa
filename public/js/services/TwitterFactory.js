@@ -4,7 +4,7 @@
   function TwitterFactory($http) {
     return {
       getUserTweets: function(opt, callback) {
-        $http.get('/twitter-proxy/user/' + opt.user, opt).success(function(data) {
+        $http.post('/twitter-proxy/user/' + opt.user, opt).success(function(data) {
           callback(data);
         });
       }
