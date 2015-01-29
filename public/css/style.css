@@ -8,10 +8,8 @@ tweets-panel {
   float: left;
   display: inline;
   width: 260px;
-  background: #f4f4f4;
-  color: #000;
-  border: 1px solid #ddd;
-  padding: 220px 20px;
+  border: 1px solid inherit;
+  padding: .8em;
   text-align: center;
   font-weight: bold;
   margin: 0 10px;

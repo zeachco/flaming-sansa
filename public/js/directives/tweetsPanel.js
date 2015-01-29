@@ -29,7 +29,18 @@
       var html = '';
 
       function render(data) {
-        console.log('tweets from ' + attr.from, data);
+        if (typeof data === 'object' && data.length) {
+
+          console.log('tweets from ' + attr.from);
+
+          data.forEach(function(tweet) {
+            console.info(attr.from, tweet.text);
+            html += '<p class="tweet">' + tweet.text + '</p>';
+          });
+
+          element.html(html);
+
+        }
       }
 
       scope.$watch('tweets.' + attr.from, function(data) {
