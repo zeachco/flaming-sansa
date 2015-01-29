@@ -19,7 +19,6 @@
 </head>
 
 <body ng-class="{ 'cms-active':editMode, 'dark':isDark }" style="font-family:Arial, Helvetica, sans-serif;margin:0px auto;max-width:980px;line-height:1.2em;">
-
   <cms-header>
     <div class="cms-header-anchor">
       <div class="cms-header-below">
@@ -28,8 +27,11 @@
       </div>
     </div>
     <div class="cms-header-body">
-      <h3><label>Background color: <input ng-model="cms.style.bgColor" type="color" /></label></h3>
-
+      <h3>
+        <label>Background color:
+          <input ng-model="cms.style.bgColor" type="color" />
+        </label>
+      </h3>
     </div>
   </cms-header>
   <header>
@@ -38,28 +40,21 @@
     <p>Please complete <b>any</b> number of the steps below within <b>5 days</b> of us sending you this document. You may put in as many hours as you wish, but we recommend a maximum of around 5 hours. Use any framework and languages you would like (evidence</p>
     of native JavaScript use encouraged) to complete the task. We will accept an email attachment of files, a link to a github repo, or a url of a website where your solution is posted.
     <p>We are looking for code quality, knowledge of cross-browser compatibility, quick load times, and innovation/thoughtfulness.</p>
-
   </header>
   <section>
     <h2>Part I: get it.</h2>
-
     <p>Use the <a href="https://dev.twitter.com/docs/api/1.1" target="_blank">Twitter API</a> to fill the following areas on the page:</p>
-
-
     <cms-toolbar>
       <label title="for {{cms.panels.join(', ')}}">Limit tweets to
         <input class="small-input" style="width: 2.5em;" type="number" ng-model="cms.maxTweets" />
       </label>
-      <label>from <date-time cms-model="timeFrom" /></label>
-      <label>to <date-time cms-model="timeTo" /></label>
+      <!--API do not support from <label>from <date-time cms-model="timeFrom" /></label> -->
+      <label>until
+        <date-time cms-model="timeTo"></date-time> of today</label> <span style="width:4em;display:inline-block"> </span> <button class="btn" ng-click="updateTweets()">Preview Tweets</button>
     </cms-toolbar>
-
     <tweets-panel ng-repeat="user in cms.panels" draggable="{{editMode}}" from="{{user}}" max="{{cms.maxTweets}}" position="{{$index}}" onchange="reorder()"></tweets-panel>
-
     <div style="clear:both;"></div>
-
     <p>(Check out the <a href="https://dev.twitter.com/docs/api/1/get/statuses/user_timeline" target="_blank">User Timeline</a> API)</p>
-
     <p>Each tweet should include at minimum:</p>
     <ul>
       <li>The tweet content</li>
@@ -74,14 +69,10 @@
       <b>Bonuses/for fun</b>: Make the columns flexible for screen width so the columns fill 100% of the page width. Layout could be as small as 320px wide. Column arrangment is open-ended.
     </p>
   </section>
-
   <section>
     <h2>Part II: Meta</h2>
-
     <p>Make an "edit layout" view that has a form to change the layout settings.</p>
-
     <p>Use HTML5 LocalStorage to store and load the layout settings.</p>
-
     <p>Configurable settings could possibly include:
       <ul>
         <li>The order of the columns.</li>

@@ -34,7 +34,8 @@ app.post(re_twitterUser, function(req, res) {
 
   client.get('search/tweets', {
     q: '@' + user,
-    count: req.body.count
+    count: req.body.count,
+    until: req.body.to
   }, function(error, tweets, response) {
     if (!error) {
       res.json(tweets.statuses);
