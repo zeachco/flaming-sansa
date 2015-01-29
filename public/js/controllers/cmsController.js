@@ -41,7 +41,6 @@
     $scope.$watch('cms.style.bgColor', function(newVal, oldVal) {
       document.body.style.background = newVal;
       $scope.isDark = getLightValue(newVal) > 0.5;
-      document.body.style.color = $scope.isDark ? '#000' : '#fff';
     });
 
     $scope.cmsToggle = function() {

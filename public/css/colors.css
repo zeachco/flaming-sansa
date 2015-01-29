@@ -1,11 +1,35 @@
+/* main */
+
 body {
   transition: color 300ms, background 300ms;
+  text-shadow: 0 0 1px #000;
+  color: #fff;
 }
+body.dark {
+  transition: color 300ms, background 300ms;
+  text-shadow: 0 0 1px #fff;
+  color: #000;
+}
+/* links */
 
 body a {
-  transition: color 300ms, background 300ms;
+  transition: color 300ms;
+  text-shadow: 0 0 1px #000;
   color: #abf;
 }
 body.dark a {
+  text-shadow: 0 0 1px #fff;
   color: #128;
+}
+/* shades */
+
+body .shade {
+  transition: color 300ms;
+  font-size:0.9em;
+  color: #bbb;
+  text-shadow: 0 0 1px #000;
+}
+body.dark .shade {
+  text-shadow: 0 0 1px #fff;
+  color: #444;
 }
