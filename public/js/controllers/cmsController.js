@@ -102,7 +102,12 @@
       var panel;
 
       $scope.cms.panels.forEach(function(user) {
-        TwitterFactory.getUserTweets(d, function(data) {
+        TwitterFactory.getUserTweets({
+          user: user,
+          count: $scope.cms.maxTweets,
+          from: $scope.getCmsDate('timeFrom'),
+          to: $scope.getCmsDate('timeTo')
+        }, function(data) {
           $scope.tweets[user] = data;
         });
       });
@@ -111,15 +116,18 @@
 
     $scope.saveChanges = function() {
       localStorage.cms = JSON.stringify($scope.cms);
+      $scope.updateTweets();
     };
 
     $scope.loadStorage = function() {
       if (localStorage.cms) {
         $scope.cms = JSON.parse(localStorage.cms);
+        $scope.updateTweets();
       } else {
         $scope.saveChanges();
       }
     };
+
     $scope.loadStorage();
 
   }

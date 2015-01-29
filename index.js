@@ -14,11 +14,11 @@ var twitterAuth = require('./env/twitterAuth.json');
 console.log(twitterAuth);
 var client = new Twitter(twitterAuth);
 
-var re_twitterUser = /twitter-proxy\/user\/([a-z]+)/;
+var re_twitterUser = /twitter-proxy\/user\/([a-zA-Z]+)/;
 
 app.get(re_twitterUser, function(req, res) {
   var uri = url.parse(req.url);
-
+  console.log(uri);
   var user = re_twitterUser.exec(uri.path)[1];
 
   console.log('fetching tweets for', user);

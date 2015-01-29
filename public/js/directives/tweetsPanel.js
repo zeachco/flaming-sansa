@@ -3,7 +3,7 @@
 
   function tweetsPanel() {
 
-    function tweetLink(scope, element, attr) {
+    return function tweetLink(scope, element, attr) {
 
       element.bind('dragstart', function(e) {
         scope.$emit('dragFrom', attr.position);
@@ -24,15 +24,18 @@
         scope.$apply('reorder()');
       });
 
-      scope.$watch('tweets.' + attr.user, function(newVal, oldVal) {
-        console.log('tweets', newVal, oldVal);
+      // tweets
+
+      var html = '';
+
+      function render(data) {
+        console.log('tweets from ' + attr.from, data);
+      }
+
+      scope.$watch('tweets.' + attr.from, function(data) {
+        render(data);
       });
 
-    }
-
-    return {
-      template: "<div><h3>@{{user}}</h3>Loading {{cms.maxTweets}} tweets...<br><small>{{cms.timeFrom}} ~ {{cms.timeTo}}</small></div>",
-      link: tweetLink
     };
 
   }

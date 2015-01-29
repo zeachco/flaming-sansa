@@ -3,8 +3,8 @@
 
   function TwitterFactory($http) {
     return {
-      getUserTweets: function(user, callback) {
-        $http.get('/twitter-proxy/user/' + user).success(function(data) {
+      getUserTweets: function(opt, callback) {
+        $http.get('/twitter-proxy/user/' + opt.user, opt).success(function(data) {
           callback(data);
         });
       }
