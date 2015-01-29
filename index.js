@@ -17,7 +17,7 @@ var config = {
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
-var twitterAuth = require('./twitterAuth.json');
+var twitterAuth = require('./env/twitterAuth.json');
 console.log(twitterAuth);
 var client = new Twitter(twitterAuth);
 
