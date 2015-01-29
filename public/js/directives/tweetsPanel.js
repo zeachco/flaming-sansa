@@ -3,7 +3,7 @@
 
   function tweetsPanel() {
 
-    return function tweetLink(scope, element, attr) {
+    function link(scope, element, attr) {
 
       element.bind('dragstart', function(e) {
         scope.$emit('dragFrom', attr.position);
@@ -25,28 +25,32 @@
       });
 
       // tweets
-
-      var html = '';
-
       function render(data) {
+
+        element[0].innerHTML = '...';
         if (typeof data === 'object' && data.length) {
 
-          console.log('tweets from ' + attr.from);
+          console.log(data.length + ' tweets from ' + attr.from);
 
+          var html = '';
           data.forEach(function(tweet) {
-            console.info(attr.from, tweet.text);
             html += '<p class="tweet">' + tweet.text + '</p>';
           });
-
           element.html('<h2>Tweets from <a href="https://twitter.com/' + attr.from + '" target="_blank">@' + attr.from + '</a></h2><scroll-view>' + html + '</scroll-view>');
 
         }
+
       }
 
       scope.$watch('tweets.' + attr.from, function(data) {
         render(data);
       });
 
+    }
+
+    return {
+      link: link,
+      transclude: true
     };
 
   }
