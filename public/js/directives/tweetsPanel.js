@@ -36,8 +36,7 @@
           data.forEach(function(tweet) {
             html += '<p class="tweet">' + tweet.text + '</p>';
           });
-          element.html('<h2>Tweets from <a href="https://twitter.com/' + attr.from + '" target="_blank">@' + attr.from + '</a></h2><scroll-view>' + html + '</scroll-view>');
-
+          element.html(utils.createTwitterLinks('<h2>' + data.length + ' tweets from @' + attr.from + '</h2><scroll-view>' + html + '</scroll-view>'));
         }
 
       }
