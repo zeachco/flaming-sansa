@@ -12,11 +12,11 @@
 
     $scope.cms = {
       panels: ['AppDirect', 'laughingsquid', 'techcrunch'],
-      maxTweets: 30,
+      maxTweets: 4,
       timeFrom: '00:00',
       timeTo: '23:59',
       style: {
-        bgColor: '#def'
+        bgColor: '#fff'
       }
     };
 

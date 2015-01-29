@@ -16,9 +16,9 @@ tweets-panel {
   transition: all .5s;
 }
 tweets-panel scroll-view {
-  max-height: 500px;
-  display:block;
+  max-height: 600px;
   overflow-y: auto;
+  display: block;
 }
 @media (max-width: 1020px) {
   tweets-panel {
@@ -33,4 +33,13 @@ body a {
 }
 body a:hover {
   text-decoration: underline;
+}
+tweet-row {
+  text-align: left;
+}
+tweet-row time-stamp {
+  font-size: 0.8em;
+  opacity: 0.8;
+  display: block;
+  border-top: 1px solid #888;
 }
